@@ -13,5 +13,42 @@ CHIP FullAdder {
         carry;   // Left bit of a + b + c
 
     PARTS:
-    // Put you code here:
+    Not(in = a, out = NotA);
+    Not(in = b, out = NotB);
+    Not(in = c, out = NotC);
+
+//begin sum computation
+    And(a = NotA, b = NotB, out = and1);
+    And(a = and1, b = c, out = And1);
+
+    And(a = NotA, b = b, out = and2);
+    And(a = and2, b = NotC, out = And2);
+
+    And(a = a, b = NotB, out = and3);
+    And(a = and3, b = NotC, out = And3);
+
+    And(a = a, b = b, out = and4);
+    And(a = and4, b = c, out = And4);
+
+    Or(a = And1, b = And2, out = sum1);
+    Or(a = And3, b = And4, out = sum2);
+    Or(a = sum1, b = sum2, out = sum);
+
+
+//begin carry computation
+    And(a = NotA, b = b, out = cs1);
+    And(a = cs1, b = c, out = CS1);
+
+    And(a = a, b = NotB, out = cs2);
+    And(a = cs2, b = c, out = CS2);
+
+    And(a = a, b = b, out = cs3);
+    And(a = cs3, b = NotC, out = CS3);
+
+    And(a = a, b = b, out = cs4);
+    And(a = cs4, b = c, out = CS4);
+
+    Or(a = CS1, b = CS2, out = CO1);
+    Or(a = CS3, b = CS4, out = CO2);
+    Or(a = CO1, b = CO2, out = carry);
 }
