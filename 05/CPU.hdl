@@ -39,5 +39,61 @@ CHIP CPU {
         pc[15];          // address of next instruction
 
     PARTS:
-    // Put your code here:
+
+    //uses the MSB to get the instruction type
+    Not(in = instruction[15], out = aInst);
+    Not(in = aInst, out = cInst);
+    And(a = cInst, b = instruction[5], out = cInstOut);
+    Mux16(a = instruction, b = ALUout, sel = cInstOut, out = aIn);
+    
+    //load a if its a AInst or CInst and the dest is to register a
+    Or(a = aInst, b = cInstOut, out = loadA);
+    ARegister(in = aIn, load = loadA, out = ARegOut);
+
+    //selects a or m based on the instruction bit
+    Mux16(a = ARegOut, b = inM, sel = instruction[12], out = AM);
+
+    //loads the d register using the ALU output
+    And(a = cInst, b = instruction[4], out = loadD);
+    DRegister(in = ALUout, load = loadD, out = Dout);
+
+    //send values through the ALU
+    ALU(x = Dout, y = AM, zx = instruction[11], nx = instruction[10], zy = instruction[9], ny = instruction[8], f = instruction[7], no = instruction[6], out = ALUout, zr = zr, ng = ng);
+
+    //write to memory
+    Or16(a=false, b=ARegOut, out[0..14]=addressM);
+    Or16(a=false, b=ALUout, out=outM);
+    And(a=cInst, b=instruction[3], out=writeM);
+
+    // calc PCload & PCinc - whether to load PC with A reg
+
+    // jump if equal
+    And(a = zr, b = instruction[1], out = jequal);
+
+    // jump if less than
+    And(a = ng, b = instruction[2], out = jLessThan);
+
+    // zero or negative
+    Or(a = zr, b = ng, out = zon);
+
+    // not zero or negative(positive)
+    Not(in = zon, out = pos);
+
+    // jump if greater than
+    And(a = pos, b = instruction[0], out = jumpGreaterThan);
+
+    // jump if less than or equal
+    Or(a = jequal, b = jLessThan, out = jumpLessEqual);
+
+    // jump if conditions are met
+    Or(a = jumpLessEqual, b = jumpGreaterThan, out = jumpToA);
+
+    // Only jump if C instruction
+    And(a = cInst, b = jumpToA, out = PCload);
+
+    // only increment if PC wasnt loaded
+    Not(in = PCload, out = PCinc);
+
+    //call the pc
+    PC(in = ARegOut, inc = PCinc, load = PCload, reset = reset, out[0..14] = pc);
 }
