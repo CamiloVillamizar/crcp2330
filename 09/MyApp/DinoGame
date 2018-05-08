@@ -1,0 +1,7 @@
+class DinoGame {
+	field Player dino;
+
+	constructor DinoGame new() {
+		let dino = new Player();
+	}
+}
