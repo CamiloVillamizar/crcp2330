@@ -1,0 +1,33 @@
+class Player {
+	
+	field int y; //y coordinate for the player's height
+	field int xSize, ySize;
+
+	constructor Player new(){
+		let xSize = 10;
+		let ySize = 10;
+		do draw();
+		return this;
+	}
+
+	//draws the player on the screen
+	method void draw() {
+		do Screen.setColor(true);
+		do Screen.drawRectangle(100, height, x + xSize, y + ySize);
+		return;
+	}
+
+	method void jump() {
+		let i = 0;
+
+		while(i < 10){
+			let y = y + i;
+		}
+
+		let i = 0;
+
+		while(i < 10){
+			let y = y - i;
+		}
+	}
+}
