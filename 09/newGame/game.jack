@@ -1,0 +1,62 @@
+class game {
+	field rect player;
+	field boolean right;
+	field boolean left;
+	field boolean jump;
+
+	constructor game new(){
+		let player = rect.new(5, 200, 10, 50);
+		let right = false;
+		let left = false;
+		let jump = false;
+		return this;
+	}
+
+	method void run() {
+	var char key;
+	var boolean exit;
+	let exit = false;
+
+		while(~exit){
+			while(key = 0){
+				let key = Keyboard.keyPressed();
+			}
+
+			if(key = 130){
+				let left = true;
+			}
+
+			if(key = 131){
+				let jump = true;
+			}
+
+			if (key = 132) {
+				let right = true;
+			}
+
+			while(~(key = 0)){
+			let key = Keyboard.keyPressed();
+			do movePlayer();
+			let right = false;
+			let left = false;
+			let jump = false;
+			}
+
+
+		}
+		return;
+	}
+
+	method void movePlayer(){
+		if(right){
+			do player.moveRight();
+		}
+		if (left){
+			do player.moveLeft();
+		}
+		if(jump){
+			do player.jump();
+		}
+		return;
+	}
+}

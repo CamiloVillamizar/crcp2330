@@ -1,0 +1,80 @@
+class rect {
+	field int x, y, xsize, ysize;
+
+
+
+	constructor rect new(int nx, int ny, int nxsize, int nysize){
+		let x = nx;
+		let y = ny;
+		let xsize = nxsize;
+		let ysize = nysize;
+		do draw();
+		return this;
+	}
+
+	method void draw() {
+		do Screen.setColor(true);
+		do Screen.drawRectangle(x, y, x + xsize, y + ysize);
+		return;
+	}
+
+	method void erase(){
+		do Screen.setColor(false);
+		do Screen.drawRectangle(x, y, x + xsize, y + ysize);
+		return;
+	}
+
+	method void moveRight() {
+		if ((x + xsize) < 510) {
+			do erase();
+			let x = x + 20;
+			do draw();
+		}
+		return;
+	}
+
+	method void moveLeft() {
+		if (x > 10) {
+			do erase();
+			let x = x - 20;
+			do draw();
+		}
+		return;
+	}
+
+	method void moveUp() {
+		if(y > 1) {
+			do erase();
+			let y = y - 5;
+			do draw();
+		}
+		return;
+	}
+
+	method void moveDown() {
+		if ((y + ysize) < 254) {
+			do erase();
+			let y = y + 5;
+			do draw();
+		}
+		return;
+	}
+
+	method void jump(){
+		var int counter;
+		let counter = 0;
+
+		while(counter < 20) {
+			do moveUp();
+			do Sys.wait(10);
+			let counter = counter + 1;
+		}
+
+		while (counter > 0){
+			do moveDown();
+			do Sys.wait(20);
+			let counter = counter - 1;
+		}
+		return;
+	}
+}

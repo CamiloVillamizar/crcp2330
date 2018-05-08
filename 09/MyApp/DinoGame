@@ -4,4 +4,28 @@ class DinoGame {
 	constructor DinoGame new() {
 		let dino = new Player();
 	}
+
+	method void run() {
+		var char key;
+		var boolean exit;
+		let exit = false;
+
+		while(~exit){
+			let key = Keyboard.keyPressed();
+			do dino.jump();
+		}
+
+		while(~(key = 0)) {
+			let key = Keyboard.keyPressed();
+		}
+	}
+
+
+	method void dispose() {
+	do Player.dispose();
+	do Memory.deAlloc(this);
+	return;
+	}
+
+
 }
