@@ -69,9 +69,7 @@ class game {
 			let down = false;
 			do checkPlayer();
 			do obs.incCtr();
-			if(time < 0){
-				do Output.printString("Game over, final score: ");
-				do Output.printInt(obs.getScore());
+			if(time = 0){
 				do Sys.wait(50);
 				let exit = true;
 				}
@@ -79,6 +77,8 @@ class game {
 
 
 		}
+		do Output.printString("Game over, final score: ");
+		do Output.printInt(obs.getScore());
 		return;
 	}
 

@@ -148,10 +148,21 @@ call rect.incCtr 1
 pop temp 0
 push this 7
 push constant 0
-lt
+eq
 if-goto IF_TRUE4
 goto IF_FALSE4
 label IF_TRUE4
+push constant 50
+call Sys.wait 1
+pop temp 0
+push constant 0
+not
+pop local 1
+label IF_FALSE4
+goto WHILE_EXP2
+label WHILE_END2
+goto WHILE_EXP0
+label WHILE_END0
 push constant 24
 call String.new 1
 push constant 71
@@ -208,17 +219,6 @@ push this 1
 call rect.getScore 1
 call Output.printInt 1
 pop temp 0
-push constant 50
-call Sys.wait 1
-pop temp 0
-push constant 0
-not
-pop local 1
-label IF_FALSE4
-goto WHILE_EXP2
-label WHILE_END2
-goto WHILE_EXP0
-label WHILE_END0
 push constant 0
 return
 function game.checkPlayer 0
