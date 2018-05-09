@@ -15,20 +15,16 @@ int main(int argc, char* argv[])
     ifstream inFile;
     inFile.open(argv[1]);
 
-
     if(!inFile)
         cout << "Error, could not find file" << endl;
 
     bool aCom;
 
-
     string input;
     getline(inFile, input);
 
-
     while(input[0] != '@')
         inFile >> input;
-
 
     while(!inFile.eof()){
 
@@ -37,19 +33,14 @@ int main(int argc, char* argv[])
         else
             aCom = false;
 
-
-
         //cout << input;
 
         if(aCom == true){
             //cout << "; A command" << endl;
             stringstream num(input.substr(1, input.length() - 1));//turns the string into an int
-
             int temp;
             num >> temp;
-
             string bin = toBinary(temp);
-
             cout << bin << endl;//binary number
         }
         else{
@@ -64,8 +55,8 @@ int main(int argc, char* argv[])
                     a = "0";
                 else
                     a = "1";
-                dest = "";
 
+                dest = "";
                 comp = input[0];
                 jump = input.substr(2, input.size());
                 comp = getComp(comp);
@@ -93,9 +84,7 @@ int main(int argc, char* argv[])
 
         inFile >> input;
 
-
     }
-
 
     return 0;
 }
@@ -150,7 +139,6 @@ string getComp(string arg){
     if(arg == "D&M") return "000000";//m
     if(arg == "D|A") return "010101";//a
     if(arg == "D|M") return "010101";//m
-    //cout << "INVALID" << endl;
 }
 
 string getDest(string arg){
@@ -161,9 +149,7 @@ string getDest(string arg){
     if(arg == "A") return "100";
     if(arg == "AM") return "101";
     if(arg == "AD") return "110";
-    if(arg == "AMD") return "111";
-    //cout << "INVALID" << endl;
-}
+    if(arg == "AMD") return "111";}
 
 string getJump(string arg){
    if(arg == "") return "000";
@@ -174,5 +160,4 @@ string getJump(string arg){
    if(arg == "JNE") return "101";
    if(arg == "JLE") return "110";
    if(arg == "JMP") return "111";
-   //cout << "INVALID" << endl;
 }
