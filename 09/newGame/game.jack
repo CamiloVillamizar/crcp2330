@@ -37,7 +37,6 @@ class game {
 				
 			}
 			let time = time - 1;
-
 			let time = time - 1;
 
 			if(key = 130){
@@ -71,10 +70,11 @@ class game {
 			do checkPlayer();
 			do obs.incCtr();
 			if(time < 0){
-				do Output.printStrint("Score: ");
+				do Output.printString("Game over, final score: ");
 				do Output.printInt(obs.getScore());
+				do Sys.wait(50);
 				let exit = true;
-			}
+				}
 			}
 
 
@@ -89,6 +89,7 @@ class game {
 					if(player.getY() - obs.getY() < 30){
 					do obs.reset();
 					do obs.incScore();
+					
 					}
 				}
 			}
@@ -114,11 +115,7 @@ class game {
 		if(down){
 			do player.moveDown();
 		}
-
 		//do moveObs(obs);
-
-
-		
 		return;
 	}
 
@@ -131,7 +128,6 @@ class game {
 		do obs.erase();
 		do obs.setX(obs.getX() - 10);
 		do obs.draw();
-
 		return;
 	}
 }

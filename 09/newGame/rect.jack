@@ -13,7 +13,7 @@ class rect {
 		let ysize = nysize;
 		let jump = false;
 		let up = true;
-		let counter = 0;
+		let counter = 20;
 		let score = 0;
 		do draw();
 		return this;
@@ -110,37 +110,27 @@ class rect {
 	}
 
 	method void reset(){
-		var boolean pass;
 		do erase();
-		let pass = false;
-		
-		while(~pass){
-			let rand = Random.new(counter);
-			let rand = rand / 500;
-			let rand = rand + 100;
-			let x = counter*5;
-			if(x > 50){
-				if(x < 300){
-					let pass = true;
-				}
+
+		let x = counter*3;
+
+		if(x < 50){
+			if(x > 300){
+			do reset();
 			}
 		}
-		let pass = false;
 
-		while(~pass){
-		let rand = Random.new(counter);
-		let rand = rand / 500;
-		let rand = rand + 100;
-		let y = counter*5 + 30;
-		if(y > 50){
-			if(y < 300){
-				let pass = true;
-				}
+		let y = counter*3;
+
+		if(y < 50){
+			if(y > 300){
+				do reset();
 			}
 		}
 
 		do draw();
 		return;
+
 	}
 
 	method void incCtr(){
