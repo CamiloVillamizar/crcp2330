@@ -250,12 +250,19 @@ push argument 0
 pop pointer 0
 push this 1
 return
-function rect.reset 0
+function rect.reset 1
 push argument 0
 pop pointer 0
 push pointer 0
 call rect.erase 1
 pop temp 0
+push constant 0
+pop local 0
+label WHILE_EXP0
+push local 0
+not
+not
+if-goto WHILE_END0
 push this 6
 call Random.new 1
 pop this 7
@@ -271,6 +278,32 @@ push this 6
 push constant 5
 call Math.multiply 2
 pop this 0
+push this 0
+push constant 50
+gt
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push this 0
+push constant 300
+lt
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+push constant 0
+not
+pop local 0
+label IF_FALSE1
+label IF_FALSE0
+goto WHILE_EXP0
+label WHILE_END0
+push constant 0
+pop local 0
+label WHILE_EXP1
+push local 0
+not
+not
+if-goto WHILE_END1
 push this 6
 call Random.new 1
 pop this 7
@@ -288,6 +321,25 @@ call Math.multiply 2
 push constant 30
 add
 pop this 1
+push this 1
+push constant 50
+gt
+if-goto IF_TRUE2
+goto IF_FALSE2
+label IF_TRUE2
+push this 1
+push constant 300
+lt
+if-goto IF_TRUE3
+goto IF_FALSE3
+label IF_TRUE3
+push constant 0
+not
+pop local 0
+label IF_FALSE3
+label IF_FALSE2
+goto WHILE_EXP1
+label WHILE_END1
 push pointer 0
 call rect.draw 1
 pop temp 0

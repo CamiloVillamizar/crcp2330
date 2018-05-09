@@ -77,33 +77,22 @@ class rect {
 	}
 
 	method void jump(){
-
 		if(counter = 0){
 			let jump = true;
 		}
-
 		if (counter < 30){
 			do erase();
-
 			let y = y - 3;
-
 			do draw();
 		}
-
 		if (counter > 30){
-
-
 			do erase();
-
 			let y = y + 3;
-
 			do draw();
 		}
-
 		if(counter > 60){
 			let counter = 1;
 		}
-
 		return;
 	}
 
@@ -121,16 +110,34 @@ class rect {
 	}
 
 	method void reset(){
+		var boolean pass;
 		do erase();
-		let rand = Random.new(counter);
-		let rand = rand / 500;
-		let rand = rand + 100;
-		let x = counter*5;
+		let pass = false;
+		
+		while(~pass){
+			let rand = Random.new(counter);
+			let rand = rand / 500;
+			let rand = rand + 100;
+			let x = counter*5;
+			if(x > 50){
+				if(x < 300){
+					let pass = true;
+				}
+			}
+		}
+		let pass = false;
 
+		while(~pass){
 		let rand = Random.new(counter);
 		let rand = rand / 500;
 		let rand = rand + 100;
 		let y = counter*5 + 30;
+		if(y > 50){
+			if(y < 300){
+				let pass = true;
+				}
+			}
+		}
 
 		do draw();
 		return;

@@ -16,7 +16,7 @@ class game {
 		let jump = false;
 		let up = false;
 		let down = false;
-		let time = 10000;
+		let time = 30000;
 		return this;
 	}
 
@@ -34,8 +34,9 @@ class game {
 				do checkPlayer();
 				do obs.incCtr();
 				//do Output.printInt(obs.getCtr());
-				let time = time - 1;
+				
 			}
+			let time = time - 1;
 
 			let time = time - 1;
 
@@ -70,6 +71,8 @@ class game {
 			do checkPlayer();
 			do obs.incCtr();
 			if(time < 0){
+				do Output.printStrint("Score: ");
+				do Output.printInt(obs.getScore());
 				let exit = true;
 			}
 			}
@@ -85,9 +88,7 @@ class game {
 				if(obs.getY() - player.getY() < 30){
 					if(player.getY() - obs.getY() < 30){
 					do obs.reset();
-					do Output.printString("Score: ");
 					do obs.incScore();
-					do Output.printInt(obs.getScore());
 					}
 				}
 			}
