@@ -53,6 +53,40 @@ int main()
         }
         else{
             //cout << "; C command" << endl;
+            string a, comp, dest, jump;
+
+            size_t eqIdx = input.find("=");
+            size_t scIdx = input.find(";");
+
+            if(eqIdx > input.size()){
+                if(input.find("M") > input.size())
+                    a = "0";
+                else
+                    a = "1";
+                dest = "";
+
+                comp = input[0];
+                jump = input.substr(2, input.size());
+                comp = getComp(comp);
+                dest = getDest(dest);
+                jump = getJump(jump);
+
+            } else {
+                if(input.find("M") > input.size())
+                    a = "0";
+                else
+                    a = "1";
+                jump = "";
+
+                dest = input[0];
+                comp = input.substr(2, input.size());
+                dest = getDest(dest);
+                comp = getComp(comp);
+                jump = getJump(jump);
+            }
+
+
+            cout << "111" << a << comp << dest << jump << endl;
         }
 
         inFile >> input;
