@@ -19,7 +19,6 @@ int main(int argc, char* argv[])
         cout << "Error, could not find file" << endl;
 
     bool aCom;
-
     string input;
     getline(inFile, input);
 
@@ -32,9 +31,7 @@ int main(int argc, char* argv[])
             aCom = true;
         else
             aCom = false;
-
         //cout << input;
-
         if(aCom == true){
             //cout << "; A command" << endl;
             stringstream num(input.substr(1, input.length() - 1));//turns the string into an int
@@ -69,23 +66,16 @@ int main(int argc, char* argv[])
                 else
                     a = "1";
                 jump = "";
-
                 dest = input[0];
                 comp = input.substr(2, input.size());
                 dest = getDest(dest);
                 comp = getComp(comp);
                 jump = getJump(jump);
             }
-
-
             cout << "111" << a << comp << dest << jump << endl;
-
         }
-
         inFile >> input;
-
     }
-
     return 0;
 }
 
@@ -98,15 +88,12 @@ string toBinary(int n){
         else
             temp = "1";
         temp += r;
-
         r = temp;
-
         n /= 2;
     }
 
     while(r.length() != 16)
         r = "0" + r;
-
     return r;
 }
 
