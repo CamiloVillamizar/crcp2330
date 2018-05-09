@@ -28,6 +28,10 @@ class game {
 				let key = Keyboard.keyPressed();
 				//do moveObs(obs);
 				do player.draw();
+				do obs.draw();
+				do checkPlayer();
+				do obs.incCtr();
+				//do Output.printInt(obs.getCtr());
 			}
 
 			if(key = 130){
@@ -46,6 +50,8 @@ class game {
 			if (key = 132) {
 				let right = true;
 			}
+			do checkPlayer();
+			do obs.incCtr();
 
 			while(~(key = 0)){
 			let key = Keyboard.keyPressed();
@@ -55,9 +61,26 @@ class game {
 			let jump = false;
 			let up = false;
 			let down = false;
+			do checkPlayer();
+			do obs.incCtr();
 			}
 
 
+		}
+		return;
+	}
+
+	method void checkPlayer(){
+		if(obs.getX() - player.getX() < 10){
+			if(player.getX() - obs.getX() < 10){
+				if(obs.getY() - player.getY() < 30){
+					if(player.getY() - obs.getY() < 30){
+					do obs.reset();
+					do Output.printString("Score: ");
+					do Output.printInt(obs.getScore());
+					}
+				}
+			}
 		}
 		return;
 	}

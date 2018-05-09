@@ -1,5 +1,5 @@
 function rect.new 0
-push constant 7
+push constant 9
 call Memory.alloc 1
 pop pointer 0
 push argument 0
@@ -17,6 +17,8 @@ not
 pop this 5
 push constant 0
 pop this 6
+push constant 0
+pop this 8
 push pointer 0
 call rect.draw 1
 pop temp 0
@@ -155,7 +157,7 @@ pop pointer 0
 push this 1
 push this 3
 add
-push constant 254
+push constant 240
 lt
 if-goto IF_TRUE0
 goto IF_FALSE0
@@ -247,4 +249,86 @@ function rect.getY 0
 push argument 0
 pop pointer 0
 push this 1
+return
+function rect.reset 0
+push argument 0
+pop pointer 0
+push pointer 0
+call rect.erase 1
+pop temp 0
+push this 6
+call Random.new 1
+pop this 7
+push this 7
+push constant 500
+call Math.divide 2
+pop this 7
+push this 7
+push constant 100
+add
+pop this 7
+push this 6
+push constant 5
+call Math.multiply 2
+pop this 0
+push this 6
+call Random.new 1
+pop this 7
+push this 7
+push constant 500
+call Math.divide 2
+pop this 7
+push this 7
+push constant 100
+add
+pop this 7
+push this 6
+push constant 5
+call Math.multiply 2
+push constant 30
+add
+pop this 1
+push pointer 0
+call rect.draw 1
+pop temp 0
+push constant 0
+return
+function rect.incCtr 0
+push argument 0
+pop pointer 0
+push this 6
+push constant 60
+gt
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push constant 0
+pop this 6
+goto IF_END0
+label IF_FALSE0
+push this 6
+push constant 1
+add
+pop this 6
+label IF_END0
+push constant 0
+return
+function rect.getCtr 0
+push argument 0
+pop pointer 0
+push this 6
+return
+function rect.incScore 0
+push argument 0
+pop pointer 0
+push this 8
+push constant 1
+add
+pop this 8
+push constant 0
+return
+function rect.getScore 0
+push argument 0
+pop pointer 0
+push this 8
 return

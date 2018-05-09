@@ -47,6 +47,15 @@ pop local 0
 push this 0
 call rect.draw 1
 pop temp 0
+push this 1
+call rect.draw 1
+pop temp 0
+push pointer 0
+call game.checkPlayer 1
+pop temp 0
+push this 1
+call rect.incCtr 1
+pop temp 0
 goto WHILE_EXP1
 label WHILE_END1
 push local 0
@@ -89,6 +98,12 @@ push constant 0
 not
 pop this 2
 label IF_FALSE3
+push pointer 0
+call game.checkPlayer 1
+pop temp 0
+push this 1
+call rect.incCtr 1
+pop temp 0
 label WHILE_EXP2
 push local 0
 push constant 0
@@ -111,10 +126,90 @@ push constant 0
 pop this 5
 push constant 0
 pop this 6
+push pointer 0
+call game.checkPlayer 1
+pop temp 0
+push this 1
+call rect.incCtr 1
+pop temp 0
 goto WHILE_EXP2
 label WHILE_END2
 goto WHILE_EXP0
 label WHILE_END0
+push constant 0
+return
+function game.checkPlayer 0
+push argument 0
+pop pointer 0
+push this 1
+call rect.getX 1
+push this 0
+call rect.getX 1
+sub
+push constant 10
+lt
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push this 0
+call rect.getX 1
+push this 1
+call rect.getX 1
+sub
+push constant 10
+lt
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+push this 1
+call rect.getY 1
+push this 0
+call rect.getY 1
+sub
+push constant 30
+lt
+if-goto IF_TRUE2
+goto IF_FALSE2
+label IF_TRUE2
+push this 0
+call rect.getY 1
+push this 1
+call rect.getY 1
+sub
+push constant 30
+lt
+if-goto IF_TRUE3
+goto IF_FALSE3
+label IF_TRUE3
+push this 1
+call rect.reset 1
+pop temp 0
+push constant 7
+call String.new 1
+push constant 83
+call String.appendChar 2
+push constant 99
+call String.appendChar 2
+push constant 111
+call String.appendChar 2
+push constant 114
+call String.appendChar 2
+push constant 101
+call String.appendChar 2
+push constant 58
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+call Output.printString 1
+pop temp 0
+push this 1
+call rect.getScore 1
+call Output.printInt 1
+pop temp 0
+label IF_FALSE3
+label IF_FALSE2
+label IF_FALSE1
+label IF_FALSE0
 push constant 0
 return
 function game.movePlayer 0

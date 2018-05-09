@@ -3,6 +3,8 @@ class rect {
 	field boolean jump;
 	field boolean up;
 	field int counter;
+	field Random rand;
+	field int score;
 
 	constructor rect new(int nx, int ny, int nxsize, int nysize){
 		let x = nx;
@@ -12,6 +14,7 @@ class rect {
 		let jump = false;
 		let up = true;
 		let counter = 0;
+		let score = 0;
 		do draw();
 		return this;
 	}
@@ -65,7 +68,7 @@ class rect {
 	}
 
 	method void moveDown() {
-		if ((y + ysize) < 254) {
+		if ((y + ysize) < 240) {
 			do erase();
 			let y = y + 20;
 			do draw();
@@ -115,5 +118,43 @@ class rect {
 
 	method int getY(){
 		return y;
+	}
+
+	method void reset(){
+		do erase();
+		let rand = Random.new(counter);
+		let rand = rand / 500;
+		let rand = rand + 100;
+		let x = counter*5;
+
+		let rand = Random.new(counter);
+		let rand = rand / 500;
+		let rand = rand + 100;
+		let y = counter*5 + 30;
+
+		do draw();
+		return;
+	}
+
+	method void incCtr(){
+		if(counter > 60){
+			let counter = 0;
+		} else {
+			let counter = counter + 1;
+		}
+		return;
+	}
+
+	method int getCtr(){
+		return counter;
+	}
+
+	method void incScore(){
+		let score = score + 1;
+		return;
+	}
+
+	method int getScore(){
+		return score;
 	}
 }
