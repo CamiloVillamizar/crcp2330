@@ -4,6 +4,7 @@
 
 using namespace std;
 
+string toBinary(int);
 string getComp(string);
 string getDest(string);
 string getJump(string);
@@ -21,6 +22,27 @@ int main()
 
 
     return 0;
+}
+
+string toBinary(int n){
+    string r;
+    while(n != 0){
+        string temp;
+        if(n % 2 == 0)
+            temp = "0";
+        else
+            temp = "1";
+        temp += r;
+
+        r = temp;
+
+        n /= 2;
+    }
+
+    while(r.length() != 16)
+        r = "0" + r;
+
+    return r;
 }
 
 string getComp(string arg){
