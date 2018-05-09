@@ -1,11 +1,11 @@
 function game.new 0
-push constant 5
+push constant 7
 call Memory.alloc 1
 pop pointer 0
-push constant 5
-push constant 200
-push constant 10
-push constant 50
+push constant 100
+push constant 100
+push constant 30
+push constant 30
 call rect.new 4
 pop this 0
 push constant 200
@@ -20,6 +20,10 @@ push constant 0
 pop this 3
 push constant 0
 pop this 4
+push constant 0
+pop this 5
+push constant 0
+pop this 6
 push pointer 0
 return
 function game.run 2
@@ -40,10 +44,6 @@ not
 if-goto WHILE_END1
 call Keyboard.keyPressed 0
 pop local 0
-push pointer 0
-push this 1
-call game.moveObs 2
-pop temp 0
 push this 0
 call rect.draw 1
 pop temp 0
@@ -67,18 +67,28 @@ goto IF_FALSE1
 label IF_TRUE1
 push constant 0
 not
-pop this 4
+pop this 5
 label IF_FALSE1
 push local 0
-push constant 132
+push constant 133
 eq
 if-goto IF_TRUE2
 goto IF_FALSE2
 label IF_TRUE2
 push constant 0
 not
-pop this 2
+pop this 6
 label IF_FALSE2
+push local 0
+push constant 132
+eq
+if-goto IF_TRUE3
+goto IF_FALSE3
+label IF_TRUE3
+push constant 0
+not
+pop this 2
+label IF_FALSE3
 label WHILE_EXP2
 push local 0
 push constant 0
@@ -97,6 +107,10 @@ push constant 0
 pop this 3
 push constant 0
 pop this 4
+push constant 0
+pop this 5
+push constant 0
+pop this 6
 goto WHILE_EXP2
 label WHILE_END2
 goto WHILE_EXP0
@@ -130,10 +144,22 @@ push this 0
 call rect.jump 1
 pop temp 0
 label IF_FALSE2
-push pointer 0
-push this 1
-call game.moveObs 2
+push this 5
+if-goto IF_TRUE3
+goto IF_FALSE3
+label IF_TRUE3
+push this 0
+call rect.moveUp 1
 pop temp 0
+label IF_FALSE3
+push this 6
+if-goto IF_TRUE4
+goto IF_FALSE4
+label IF_TRUE4
+push this 0
+call rect.moveDown 1
+pop temp 0
+label IF_FALSE4
 push constant 0
 return
 function game.moveObs 0

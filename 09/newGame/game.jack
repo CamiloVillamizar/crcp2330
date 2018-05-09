@@ -4,13 +4,17 @@ class game {
 	field boolean right;
 	field boolean left;
 	field boolean jump;
+	field boolean up;
+	field boolean down;
 
 	constructor game new(){
-		let player = rect.new(5, 200, 10, 50);
+		let player = rect.new(100, 100, 30, 30);
 		let obs = rect.new(200, 240, 5, 10);
 		let right = false;
 		let left = false;
 		let jump = false;
+		let up = false;
+		let down = false;
 		return this;
 	}
 
@@ -22,7 +26,7 @@ class game {
 		while(~exit){
 			while(key = 0){
 				let key = Keyboard.keyPressed();
-				do moveObs(obs);
+				//do moveObs(obs);
 				do player.draw();
 			}
 
@@ -31,8 +35,13 @@ class game {
 			}
 
 			if(key = 131){
-				let jump = true;
+				let up = true;
 			}
+
+			if(key = 133){
+				let down = true;
+			}
+
 
 			if (key = 132) {
 				let right = true;
@@ -44,6 +53,8 @@ class game {
 			let right = false;
 			let left = false;
 			let jump = false;
+			let up = false;
+			let down = false;
 			}
 
 
@@ -62,7 +73,16 @@ class game {
 			do player.jump();
 		}
 
-		do moveObs(obs);
+		if(up){
+			do player.moveUp();
+		}
+
+		if(down){
+			do player.moveDown();
+		}
+
+		//do moveObs(obs);
+
 
 		
 		return;
