@@ -1,6 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <sstream>
 
 using namespace std;
 
@@ -9,10 +10,10 @@ string getComp(string);
 string getDest(string);
 string getJump(string);
 
-int main()
+int main(int argc, char* argv[])
 {
     ifstream inFile;
-    inFile.open("MaxL.asm");
+    inFile.open(argv[1]);
 
 
     if(!inFile)
@@ -87,6 +88,7 @@ int main()
 
 
             cout << "111" << a << comp << dest << jump << endl;
+
         }
 
         inFile >> input;
