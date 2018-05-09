@@ -18,6 +18,46 @@ int main()
     if(!inFile)
         cout << "Error, could not find file" << endl;
 
+    bool aCom;
+
+
+    string input;
+    getline(inFile, input);
+
+
+    while(input[0] != '@')
+        inFile >> input;
+
+
+    while(!inFile.eof()){
+
+        if(input[0] == '@')
+            aCom = true;
+        else
+            aCom = false;
+
+
+
+        //cout << input;
+
+        if(aCom == true){
+            //cout << "; A command" << endl;
+            stringstream num(input.substr(1, input.length() - 1));//turns the string into an int
+
+            int temp;
+            num >> temp;
+
+            string bin = toBinary(temp);
+
+            cout << bin << endl;//binary number
+        }
+        else{
+            //cout << "; C command" << endl;
+        }
+
+        inFile >> input;
+
+
     }
 
 
