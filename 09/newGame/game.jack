@@ -1,11 +1,13 @@
 class game {
 	field rect player;
+	field rect obs;
 	field boolean right;
 	field boolean left;
 	field boolean jump;
 
 	constructor game new(){
 		let player = rect.new(5, 200, 10, 50);
+		let obs = rect.new(200, 240, 5, 10);
 		let right = false;
 		let left = false;
 		let jump = false;
@@ -20,6 +22,8 @@ class game {
 		while(~exit){
 			while(key = 0){
 				let key = Keyboard.keyPressed();
+				do moveObs(obs);
+				do player.draw();
 			}
 
 			if(key = 130){
@@ -57,6 +61,23 @@ class game {
 		if(jump){
 			do player.jump();
 		}
+
+		do moveObs(obs);
+
+		
+		return;
+	}
+
+	method void moveObs(rect obs){
+		if(obs.getX() < 5){
+			do obs.erase();
+			do obs.setX(400);
+			do obs.draw();
+		}
+		do obs.erase();
+		do obs.setX(obs.getX() - 10);
+		do obs.draw();
+
 		return;
 	}
 }
