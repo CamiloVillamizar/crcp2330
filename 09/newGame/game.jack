@@ -6,6 +6,7 @@ class game {
 	field boolean jump;
 	field boolean up;
 	field boolean down;
+	field int time;
 
 	constructor game new(){
 		let player = rect.new(100, 100, 30, 30);
@@ -15,6 +16,7 @@ class game {
 		let jump = false;
 		let up = false;
 		let down = false;
+		let time = 10000;
 		return this;
 	}
 
@@ -32,7 +34,10 @@ class game {
 				do checkPlayer();
 				do obs.incCtr();
 				//do Output.printInt(obs.getCtr());
+				let time = time - 1;
 			}
+
+			let time = time - 1;
 
 			if(key = 130){
 				let left = true;
@@ -54,6 +59,7 @@ class game {
 			do obs.incCtr();
 
 			while(~(key = 0)){
+			let time = time - 1;
 			let key = Keyboard.keyPressed();
 			do movePlayer();
 			let right = false;
@@ -63,6 +69,9 @@ class game {
 			let down = false;
 			do checkPlayer();
 			do obs.incCtr();
+			if(time < 0){
+				let exit = true;
+			}
 			}
 
 
@@ -71,12 +80,13 @@ class game {
 	}
 
 	method void checkPlayer(){
-		if(obs.getX() - player.getX() < 10){
+		if(obs.getX() - player.getX() < 30){
 			if(player.getX() - obs.getX() < 10){
 				if(obs.getY() - player.getY() < 30){
 					if(player.getY() - obs.getY() < 30){
 					do obs.reset();
 					do Output.printString("Score: ");
+					do obs.incScore();
 					do Output.printInt(obs.getScore());
 					}
 				}
